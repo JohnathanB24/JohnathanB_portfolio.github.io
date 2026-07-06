@@ -1,0 +1,838 @@
+<!--
+  ============================================================
+  JOHNATHAN BERNAL — NETWORK & SECURITY PORTFOLIO
+  ------------------------------------------------------------
+  Built from your resume. Spots you may still want to tweak:
+    - Résumé download link        -> search "[ EDIT: RESUME ]"
+    - LinkedIn URL                -> search "[ EDIT: LINKEDIN ]"
+  Everything else is pulled from your resume.
+  ============================================================
+-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Johnathan Bernal — Network &amp; Security</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink:        #0E1320;
+    --ink-2:      #11182a;
+    --surface:    #151C2C;
+    --surface-2:  #1a2236;
+    --line:       #26304A;
+    --line-soft:  #1f2940;
+    --text:       #ECEFF6;
+    --muted:      #818CA6;
+    --muted-2:    #5e6883;
+    --accent:     #FFB347;
+    --accent-dim: rgba(255, 179, 71, 0.12);
+    --accent-line:rgba(255, 179, 71, 0.35);
+    --green:      #28c840;
+
+    --display: "Space Grotesk", system-ui, sans-serif;
+    --body:    "Inter", system-ui, sans-serif;
+    --mono:    "JetBrains Mono", ui-monospace, monospace;
+
+    --maxw: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.25;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+  a { color: inherit; text-decoration: none; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+  .eyebrow::before { content: "// "; color: var(--muted-2); }
+
+  /* ===================== NAV ===================== */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(14, 19, 32, 0.72);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-family: var(--mono); font-size: 0.95rem; font-weight: 500; }
+  .brand .dot { color: var(--accent); }
+  .nav-links { display: flex; gap: 24px; counter-reset: navcount; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 0.82rem; color: var(--muted);
+    transition: color 0.2s; counter-increment: navcount;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a::before { content: counter(navcount, decimal-leading-zero) " "; color: var(--muted-2); }
+
+  /* ===================== HERO ===================== */
+  .hero { padding: 96px 0 84px; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 10px 0 22px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .role {
+    font-family: var(--mono);
+    font-size: clamp(0.9rem, 2.4vw, 1.12rem);
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    max-width: 620px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -28px rgba(0,0,0,0.7);
+  }
+  .term-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .term-bar .lamp { width: 11px; height: 11px; border-radius: 50%; background: var(--line); }
+  .term-bar .lamp.a { background: #ff5f57; }
+  .term-bar .lamp.b { background: #febc2e; }
+  .term-bar .lamp.c { background: #28c840; }
+  .term-bar .title { margin-left: 8px; font-family: var(--mono); font-size: 0.74rem; color: var(--muted-2); }
+  .term-body { padding: 20px 18px; font-family: var(--mono); font-size: 0.86rem; line-height: 1.9; }
+  .term-body .prompt { color: var(--accent); }
+  .term-body .out { color: var(--muted); }
+  .term-body .typed { color: var(--text); }
+  .cursor {
+    display: inline-block; width: 8px; height: 1.05em;
+    background: var(--accent); vertical-align: text-bottom;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+
+  .hero-cta { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 0.84rem;
+    padding: 12px 22px; border-radius: 7px;
+    border: 1px solid var(--line); transition: all 0.2s;
+  }
+  .btn.primary { background: var(--accent); color: var(--ink); border-color: var(--accent); font-weight: 500; }
+  .btn.primary:hover { background: #ffc06b; transform: translateY(-2px); }
+  .btn.ghost:hover { border-color: var(--accent-line); color: var(--accent); }
+
+  /* ===================== SECTIONS ===================== */
+  section { padding: 84px 0; position: relative; z-index: 1; }
+  .section-title {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    letter-spacing: -0.01em; margin-bottom: 38px;
+  }
+
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  .about-grid p { color: var(--muted); font-size: 1.05rem; margin-bottom: 18px; }
+  .about-grid p strong { color: var(--text); font-weight: 600; }
+  .fact-card {
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); padding: 22px 24px;
+  }
+  .fact-card .row { display: flex; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px dashed var(--line); }
+  .fact-card .row:last-child { border-bottom: none; }
+  .fact-card .k { font-family: var(--mono); font-size: 0.8rem; color: var(--muted-2); }
+  .fact-card .v { font-family: var(--mono); font-size: 0.8rem; color: var(--text); text-align: right; }
+
+  /* skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .skill-cat { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 24px; }
+  .skill-cat h3 { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 16px; font-weight: 500; }
+  .skill-cat h3::before { content: "› "; color: var(--muted-2); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text);
+    padding: 6px 11px; border: 1px solid var(--line); border-radius: 6px;
+    background: var(--ink-2); transition: all 0.2s;
+  }
+  .tag:hover { border-color: var(--accent-line); color: var(--accent); }
+
+  /* certifications */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .cert {
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); padding: 22px 24px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .cert .badge {
+    align-self: flex-start;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em;
+    padding: 3px 9px; border-radius: 20px;
+  }
+  .cert .badge.done { color: var(--green); background: rgba(40,200,64,0.12); }
+  .cert .badge.prog { color: var(--accent); background: var(--accent-dim); }
+  .cert h3 { font-family: var(--display); font-size: 1.12rem; font-weight: 600; }
+  .cert .issuer { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+  /* projects */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .project {
+    border: 1px solid var(--line); border-radius: 12px;
+    background: var(--surface); padding: 28px;
+    transition: transform 0.25s, border-color 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .project:hover { transform: translateY(-4px); border-color: var(--accent-line); }
+  .project .pmeta { font-family: var(--mono); font-size: 0.74rem; color: var(--muted-2); margin-bottom: 14px; display: flex; justify-content: space-between; gap: 10px; }
+  .project h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; }
+  .project p { color: var(--muted); font-size: 0.96rem; margin-bottom: 18px; flex: 1; }
+  .project .stack { display: flex; flex-wrap: wrap; gap: 7px; }
+  .project .stack span { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); background: var(--accent-dim); padding: 4px 9px; border-radius: 5px; }
+
+  /* timeline */
+  .timeline { border-left: 1px solid var(--line); padding-left: 32px; margin-left: 6px; }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -38px; top: 6px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--ink); border: 2px solid var(--accent);
+  }
+  .tl-item .when { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); margin-bottom: 6px; }
+  .tl-item h3 { font-family: var(--display); font-size: 1.2rem; font-weight: 600; }
+  .tl-item .org { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; }
+  .tl-item p { color: var(--muted); font-size: 0.96rem; }
+
+  /* contact */
+  .contact { text-align: center; padding-bottom: 110px; }
+  .contact h2 { font-family: var(--display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 18px; }
+  .contact h2 .accent { color: var(--accent); }
+  .contact p { color: var(--muted); max-width: 500px; margin: 0 auto 34px; }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid var(--line-soft); padding: 28px 0; }
+  .footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .footer-inner span { font-family: var(--mono); font-size: 0.78rem; color: var(--muted-2); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 28px; }
+    .projects { grid-template-columns: 1fr; }
+    .hero { padding: 64px 0 56px; }
+    section { padding: 60px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .cursor { animation: none; }
+    .project:hover, .btn.primary:hover { transform: none; }
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* featured lab card with image */
+  .project--featured { grid-column: 1 / -1; flex-direction: row; gap: 28px; align-items: stretch; }
+  .project--featured .project-body { display: flex; flex-direction: column; flex: 1; }
+  .project-img {
+    flex: 0 0 46%; border: 1px solid var(--line); border-radius: 9px;
+    background: var(--ink-2); overflow: hidden; padding: 0; cursor: zoom-in;
+    position: relative; display: block; min-height: 0;
+  }
+  .project-img img { width: 100%; height: 100%; max-height: 300px; object-fit: contain; display: block; transition: transform 0.3s; }
+  .project-img:hover img { transform: scale(1.03); }
+  .img-badge {
+    position: absolute; bottom: 10px; right: 10px;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--text);
+    background: rgba(14,19,32,0.82); border: 1px solid var(--line);
+    padding: 5px 10px; border-radius: 6px; backdrop-filter: blur(4px);
+  }
+  /* lightbox */
+  .lb { position: fixed; inset: 0; z-index: 200; display: none; background: rgba(8,11,18,0.94); }
+  .lb.open { display: flex; flex-direction: column; }
+  .lb-top { display: flex; justify-content: space-between; align-items: center; padding: 16px 22px; }
+  .lb-count { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+  .lb-close { font-family: var(--mono); font-size: 0.9rem; color: var(--text); background: none; border: 1px solid var(--line); padding: 7px 13px; border-radius: 7px; cursor: pointer; }
+  .lb-close:hover { border-color: var(--accent-line); color: var(--accent); }
+  .lb-stage { flex: 1; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 0 16px; min-height: 0; }
+  .lb-stage img { max-width: 88vw; max-height: 74vh; object-fit: contain; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+  .lb-nav { font-family: var(--mono); font-size: 1.3rem; color: var(--text); background: rgba(21,28,44,0.9); border: 1px solid var(--line); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; flex-shrink: 0; }
+  .lb-nav:hover { border-color: var(--accent-line); color: var(--accent); }
+  .lb-cap { font-family: var(--body); font-size: 0.92rem; color: var(--muted); text-align: center; padding: 16px 24px 26px; max-width: 760px; margin: 0 auto; }
+  @media (max-width: 760px) {
+    .project--featured { flex-direction: column; }
+    .project-img { flex: none; }
+    .project-img img { max-height: 220px; }
+    .lb-stage img { max-width: 94vw; }
+  }
+</style>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">johnathan<span class="dot">_</span>bernal</a>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#certs">certs</a>
+      <a href="#labs">labs</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero wrap" id="top">
+  <span class="eyebrow">available for IT &amp; network roles</span>
+  <h1>Johnathan Bernal,<br /><span class="accent">connecting &amp; securing</span> the network.</h1>
+  <p class="role">Network Security and IT Professional</p>
+
+  <div class="terminal" aria-hidden="true">
+    <div class="term-bar">
+      <span class="lamp a"></span><span class="lamp b"></span><span class="lamp c"></span>
+      <span class="title">~/whoami</span>
+    </div>
+    <div class="term-body">
+      <div><span class="prompt">$</span> <span id="cmd"></span><span class="cursor" id="cursor"></span></div>
+      <div id="output" style="display:none;">
+        <span class="out">→ name&nbsp;&nbsp;:</span> <span class="typed">Johnathan Goode Bernal</span><br />
+        <span class="out">→ role&nbsp;&nbsp;:</span> <span class="typed">Network Security and IT Professional</span><br />
+        <span class="out">→ certs&nbsp;:</span> <span class="typed">Network+ · AZ-900 · CCNA (in progress)</span><br />
+        <span class="out">→ status:</span> <span class="typed">open to opportunities ✦</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#labs" class="btn primary">See my lab work</a>
+    <!-- [ EDIT: RESUME ] host your PDF somewhere and link it here -->
+    <a href="https://drive.google.com/file/d/1ye16YDS_E_cUYzLj5DQ6Vim0177dZjUj/view?usp=sharing" target="_blank" rel="noopener" class="btn ghost">Download résumé</a>
+  </div>
+</header>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="wrap reveal">
+  <span class="eyebrow">about</span>
+  <h2 class="section-title">A bit about me</h2>
+  <div class="about-grid">
+    <div>
+      <p>I'm a networking and cybersecurity professional building a strong foundation in <strong>enterprise infrastructure</strong> — routing and switching, server administration, and network security. Most of my hands-on experience comes from intensive lab work: configuring Cisco devices, segmenting networks, hardening systems, and analyzing live traffic.</p>
+      <p>Before moving into IT, I spent several years in <strong>operations and production leadership</strong>, where I learned to troubleshoot under pressure, document clearly, and keep a team aligned. I bring that same disciplined, methodical approach to every network I touch.</p>
+      <p>I'm bilingual in English and Spanish, currently finishing my Cyber Security degree and working toward my CCNA.</p>
+    </div>
+    <div class="fact-card">
+      <div class="row"><span class="k">location</span><span class="v">Houston, TX</span></div>
+      <div class="row"><span class="k">focus</span><span class="v">Network &amp; Security</span></div>
+      <div class="row"><span class="k">degree</span><span class="v">A.A.S. Cyber Security</span></div>
+      <div class="row"><span class="k">languages</span><span class="v">English / Spanish</span></div>
+      <div class="row"><span class="k">open to</span><span class="v">Network / IT Support</span></div>
+      <div class="row"><span class="k">status</span><span class="v">Available</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="wrap reveal">
+  <span class="eyebrow">skills</span>
+  <h2 class="section-title">What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <h3>Networking</h3>
+      <div class="tags">
+        <span class="tag">Cisco IOS / CLI</span><span class="tag">Routing &amp; Switching</span>
+        <span class="tag">VLANs</span><span class="tag">NAT / PAT</span><span class="tag">OSPF</span>
+        <span class="tag">EIGRP</span><span class="tag">RIPv2</span><span class="tag">BGP</span><span class="tag">IP Addressing</span><span class="tag">Packet Tracer</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Security &amp; Monitoring</h3>
+      <div class="tags">
+        <span class="tag">Firewalls</span><span class="tag">ACLs</span>
+        <span class="tag">Wireshark</span><span class="tag">Traffic Analysis</span><span class="tag">IDS</span>
+        <span class="tag">Network Forensics</span><span class="tag">Security Audits</span><span class="tag">Access Control</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Systems &amp; Servers</h3>
+      <div class="tags">
+        <span class="tag">Windows Server 2019/2022</span><span class="tag">Active Directory</span>
+        <span class="tag">GPOs</span><span class="tag">Linux (Ubuntu/Debian/Kali)</span><span class="tag">Virtualization</span>
+        <span class="tag">User &amp; Group Mgmt</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Scripting &amp; Automation</h3>
+      <div class="tags">
+        <span class="tag">Bash</span><span class="tag">PowerShell</span>
+        <span class="tag">Python</span><span class="tag">Config Automation</span><span class="tag">Troubleshooting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CERTIFICATIONS ===================== -->
+<section id="certs" class="wrap reveal">
+  <span class="eyebrow">certifications &amp; education</span>
+  <h2 class="section-title">Credentials</h2>
+  <div class="certs-grid">
+    <div class="cert">
+      <span class="badge prog">IN PROGRESS</span>
+      <h3>Cisco CCNA</h3>
+      <span class="issuer">Cisco · 200-301</span>
+    </div>
+    <div class="cert">
+      <span class="badge done">CERTIFIED</span>
+      <h3>CompTIA Network+</h3>
+      <span class="issuer">CompTIA · 2026</span>
+    </div>
+    <div class="cert">
+      <span class="badge done">CERTIFIED</span>
+      <h3>Microsoft AZ-900</h3>
+      <span class="issuer">Azure Fundamentals · 2026</span>
+    </div>
+    <div class="cert">
+      <span class="badge done">EARNED</span>
+      <h3>A.A.S. Cyber Security</h3>
+      <span class="issuer">Texas State Technical College · 2025</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LABS / PROJECTS ===================== -->
+<section id="labs" class="wrap reveal">
+  <span class="eyebrow">hands-on lab work</span>
+  <h2 class="section-title">Labs I've built</h2>
+  <div class="projects">
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="fw" aria-label="Open enterprise firewall lab gallery">
+        <img class="gallery-thumb" data-g="fw" alt="Enterprise dual-ASA firewall and DMZ lab topology" />
+        <span class="img-badge">&#8599; View gallery (18)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_01</span><span>Cisco Packet Tracer</span></div>
+        <h3>Enterprise Firewall &amp; DMZ (Cisco ASA)</h3>
+        <p>Built a segmented enterprise edge around two Cisco ASA 5506-X firewalls: an internal ASA enforcing inside/guest/outside security zones with PAT, and a dedicated DMZ ASA publishing a web server through static NAT. A perimeter router adds a second filtering layer, and VLAN segmentation on the distribution switch separates corporate and guest traffic, backed by redundant DHCP and DNS (PDC/BDC) services. Verified the whole security policy with a connectivity matrix, ACL hit counts and the live translation table, plus a deliberate deny test proving guest isolation.</p>
+        <div class="stack"><span>Cisco ASA</span><span>DMZ / Static NAT</span><span>Security Zones</span><span>ACLs</span><span>VLAN Segmentation</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="ebgp" aria-label="Open eBGP lab gallery">
+        <img class="gallery-thumb" data-g="ebgp" alt="eBGP between autonomous systems lab topology" />
+        <span class="img-badge">&#8599; View gallery (9)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_02</span><span>Cisco Packet Tracer</span></div>
+        <h3>eBGP Between Autonomous Systems</h3>
+        <p>Configured external BGP across three autonomous systems — an ISP (AS 1) peering with two customer sites, Site1 (AS 100) and Site2 (AS 200). Each router runs its own BGP process, forms eBGP neighbor relationships, and advertises its internal loopback network so routes are exchanged across the AS boundaries.</p>
+        <div class="stack"><span>eBGP</span><span>Autonomous Systems</span><span>Route Advertisement</span><span>Cisco IOS</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="vpn" aria-label="Open VPN lab gallery">
+        <img class="gallery-thumb" data-g="vpn" alt="Site-to-site IPsec VPN lab topology" />
+        <span class="img-badge">&#8599; View gallery (12)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_03</span><span>Cisco Packet Tracer</span></div>
+        <h3>Site-to-Site IPsec VPN</h3>
+        <p>Configured an encrypted IPsec tunnel linking a remote location network to a corporate network across the public internet — ISAKMP/IKE policy, pre-shared keys, and a crypto map matching interesting traffic. Hardened the public-facing interface with an ACL that permits ISAKMP/ESP/AHP while dropping spoofed and private-range sources.</p>
+        <div class="stack"><span>IPsec</span><span>ISAKMP</span><span>Crypto Map</span><span>ACLs</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="ospf" aria-label="Open OSPF lab gallery">
+        <img class="gallery-thumb" data-g="ospf" alt="Multi-area OSPFv2 lab topology" />
+        <span class="img-badge">&#8599; View gallery (4)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_04</span><span>Cisco Packet Tracer</span></div>
+        <h3>Multi-Area OSPFv2</h3>
+        <p>Configured OSPFv2 across three routers in a multi-area design — a backbone (Area 0) linking R1, R2 and R3, with Area 1 and Area 3 at the edges. R1 and R2 act as Area Border Routers, and the routing tables show inter-area (O IA) routes — the proof that routes are passing correctly across area boundaries.</p>
+        <div class="stack"><span>OSPFv2</span><span>Multi-Area</span><span>ABR</span><span>Cisco IOS</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="eigrp" aria-label="Open EIGRP lab gallery">
+        <img class="gallery-thumb" data-g="eigrp" alt="EIGRP routed network lab topology" />
+        <span class="img-badge">&#8599; View gallery (10)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_05</span><span>Cisco Packet Tracer</span></div>
+        <h3>EIGRP Routed Network</h3>
+        <p>Built a three-router topology running EIGRP (autonomous system 10) over /30 serial links, advertising each router's LAN with wildcard masks and setting passive interfaces on the access segments. Configured static addressing on the end hosts plus basic hardening — login banners and console/VTY line passwords — across R1, R2 and R3.</p>
+        <div class="stack"><span>EIGRP</span><span>Cisco IOS</span><span>Serial WAN</span><span>Subnetting</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="nat" aria-label="Open NAT/PAT lab gallery">
+        <img class="gallery-thumb" data-g="nat" alt="NAT/PAT edge configuration lab topology" />
+        <span class="img-badge">&#8599; View gallery (6)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_06</span><span>Cisco Packet Tracer</span></div>
+        <h3>NAT / PAT Edge Configuration</h3>
+        <p>Configured PAT (NAT overload) on a border router so an entire private internal network (192.168.1.0/24) shares a single public address when reaching the outside. The outside and inside interfaces are tagged with ip nat outside/inside, an access list selects the inside source network, and an interior router with a default route funnels all outbound traffic to the NAT boundary. Proven with the show ip nat translations table and successful pings in both directions.</p>
+        <div class="stack"><span>PAT / Overload</span><span>NAT</span><span>Cisco IOS</span><span>Static Routing</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="acl" aria-label="Open ACL lab gallery">
+        <img class="gallery-thumb" data-g="acl" alt="Access control list implementation lab topology" />
+        <span class="img-badge">&#8599; View gallery (10)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_07</span><span>Cisco Packet Tracer</span></div>
+        <h3>Standard &amp; Extended ACLs</h3>
+        <p>Implemented a multi-site access-control policy across the HQ, SF and LA routers: a standard ACL restricting DMZ access to only the office managers and the admin network, a VTY ACL limiting router Telnet logins to the admin subnet, and an extended ACL blocking a range of SF hosts from the LA network. Each policy is proven with paired permit-and-deny tests.</p>
+        <div class="stack"><span>Standard ACLs</span><span>Extended ACLs</span><span>VTY Security</span><span>Packet Filtering</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="dhcp" aria-label="Open DHCP lab gallery">
+        <img class="gallery-thumb" data-g="dhcp" alt="DHCPv4 on a router lab topology" />
+        <span class="img-badge">&#8599; View gallery (9)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_08</span><span>Cisco Packet Tracer</span></div>
+        <h3>DHCPv4 on a Router</h3>
+        <p>Configured a central router (R2) as a DHCPv4 server with separate address pools for two remote LANs — excluded addresses, default gateways, DNS and domain name — and set up R1 as a DHCP relay using ip helper-address. RIPv2 ties the network together and a default route reaches the ISP.</p>
+        <div class="stack"><span>DHCPv4</span><span>DHCP Relay</span><span>RIPv2</span><span>Cisco IOS</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="ws" aria-label="Open Wireshark network forensics lab gallery">
+        <img class="gallery-thumb" data-g="ws" alt="Wireshark logo — network forensics lab" />
+        <span class="img-badge">&#8599; View gallery (14)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_09</span><span>Wireshark</span></div>
+        <h3>Wireshark Network Forensics</h3>
+        <p>Investigated a malware-traffic PCAP (fake software-download infection) end to end in Wireshark — pivoting through IPv4 conversations, DNS, HTTP, TLS and Ethernet to identify the infected Windows host, its MAC, hostname and user, the spoofed download domain, and the command-and-control servers, then documenting every artifact in an indicators-of-compromise table.</p>
+        <div class="stack"><span>Wireshark</span><span>PCAP</span><span>Forensics</span><span>TLS</span><span>IOCs</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="ad" aria-label="Open Active Directory lab gallery">
+        <img class="gallery-thumb" data-g="ad" alt="Windows Server logo — Active Directory lab" />
+        <span class="img-badge">&#8599; View gallery (30)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_10</span><span>Windows Server 2022</span></div>
+        <h3>Active Directory Domain</h3>
+        <p>Stood up a Windows Server 2022 domain controller — promoting it into a new forest (TXRigJA.local) with Install-ADDSForest and AD-integrated DNS, then built out the directory: organizational units, domain users, security groups across all three scopes (global, universal, domain local), and delegation of control granting a non-admin user password-reset rights over an OU. Forward and reverse DNS zones confirm name resolution both ways.</p>
+        <div class="stack"><span>Active Directory</span><span>Windows Server 2022</span><span>AD DS</span><span>DNS</span><span>PowerShell</span></div>
+      </div>
+    </article>
+    <article class="project project--featured">
+      <button class="project-img gallery-trigger" data-gallery="linux" aria-label="Open Linux file management lab gallery">
+        <img class="gallery-thumb" data-g="linux" alt="Linux desktop used for the file management and scripting lab" />
+        <span class="img-badge">&#8599; View gallery (14)</span>
+      </button>
+      <div class="project-body">
+        <div class="pmeta"><span>lab_11</span><span>Ubuntu Linux</span></div>
+        <h3>Linux File Management &amp; Shell Scripting</h3>
+        <p>Built and worked a structured project tree from the Ubuntu shell — creating nested directories, populating and reading files, copying and moving content, and managing permissions with chmod (symbolic and octal, locking sensitive files to owner-only and revealing hidden files with ls -la). Also wrote and ran a Bash backup script and searched the tree by name and content with find and grep.</p>
+        <div class="stack"><span>Ubuntu</span><span>Bash</span><span>Filesystem</span><span>Permissions</span><span>Scripting</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience" class="wrap reveal">
+  <span class="eyebrow">experience</span>
+  <h2 class="section-title">Where I've worked</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="when">Mar 2024 — Present</div>
+      <h3>Operations Supervisor</h3>
+      <div class="org">Life Time Fitness · Sugar Land, TX</div>
+      <p>Lead daily operations and a customer service team at a busy fitness facility, delivering a high-quality member experience, helped manage daily operations, support staff, complete audits, and assist customers. I learned communication, teamwork, customer service, and how to manage responsibilities in a professional workplace.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">Sep 2019 — Jan 2024</div>
+      <h3>Supervisor / Production Technician</h3>
+      <div class="org">JM Eagle Manufacturing Co · Wharton, TX</div>
+      <p>Supervised daily production operations and department employees, maintained and diagnosed manufacturing equipment, and performed preventive maintenance and basic repairs to keep machinery running and reduce downtime. I learned leadership, troubleshooting in a fast-paced environment and improved my work ethic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="wrap reveal contact">
+  <span class="eyebrow">contact</span>
+  <h2>Let's <span class="accent">connect</span>.</h2>
+  <p>I'm currently open to network, security, and IT support roles. The fastest way to reach me is email — I usually reply within a day.</p>
+  <div class="contact-links">
+    <a href="mailto:Johnathanbernal24@gmail.com" class="btn primary">Johnathanbernal24@gmail.com</a>
+    <a href="https://www.linkedin.com/in/johnathan-bernal-25331134b" target="_blank" rel="noopener" class="btn ghost">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© <span id="year"></span> Johnathan Bernal</span>
+    <span>Houston, TX · hand-coded</span>
+  </div>
+</footer>
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="VPN lab gallery">
+  <div class="lb-top">
+    <span class="lb-count" id="lbCount"></span>
+    <button class="lb-close" id="lbClose">close ✕</button>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-nav" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <img id="lbImg" alt="" />
+    <button class="lb-nav" id="lbNext" aria-label="Next">&#8250;</button>
+  </div>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script>
+  var GALLERIES = {
+    vpn: [
+{src:"images/vpn-01.jpg",cap:"Lab topology — remote site and corporate network linked by an IPsec tunnel across the public internet."},
+{src:"images/vpn-02.png",cap:"Tunnel verified — ISAKMP SA in QM_IDLE/ACTIVE and the IPsec SA showing packets being encrypted (encaps) and decrypted (decaps)."},
+{src:"images/vpn-03.png",cap:"show access-list — hit counts confirm ACL 110 is matching interesting traffic and ACL 199 is permitting ISAKMP and ESP for the VPN."},
+{src:"images/vpn-04.png",cap:"End-to-end proof — the remote-site server loads the corporate web server's page across the encrypted tunnel."},
+{src:"images/vpn-05.png",cap:"RmtSiteVPNRouter — ISAKMP policy, pre-shared key, transform set and crypto map."},
+{src:"images/vpn-06.png",cap:"RmtSiteVPNRouter — crypto map applied to the WAN interface; ACL 110 defines the interesting traffic."},
+{src:"images/vpn-07.png",cap:"VPNRouter (corporate edge) — matching IPsec crypto configuration and peer."},
+{src:"images/vpn-08.png",cap:"VPNRouter — hardened ACL 199 blocks spoofed/private-range sources while permitting ISAKMP, ESP and AHP."},
+{src:"images/vpn-09.png",cap:"ZeroDay corporate internal router — interface addressing and routing."},
+{src:"images/vpn-10.png",cap:"ZeroDay corporate internal router — running configuration (continued)."},
+{src:"images/vpn-11.png",cap:"Remote-site web server providing HTTP/HTTPS, used to verify traffic across the tunnel."},
+{src:"images/vpn-12.png",cap:"Corporate web server (HTTP/HTTPS) reachable from the remote site once the VPN is up."}
+],
+    eigrp: [
+{src:"images/eigrp-01.jpg",cap:"Lab topology — three routers (R1–R3) in a full mesh running EIGRP, each with its own LAN and /30 serial links."},
+{src:"images/eigrp-02.png",cap:"R1 verified — EIGRP neighbors formed with R2 and R3, and the routing table showing every remote LAN learned as an EIGRP (D) route."},
+{src:"images/eigrp-03.png",cap:"R2 verified — adjacencies with R1 and R3 are up and all remote networks are learned via EIGRP."},
+{src:"images/eigrp-04.png",cap:"R3 verified — neighbors established and every 192.168.x.0 LAN reachable through EIGRP."},
+{src:"images/eigrp-05.png",cap:"R1 — interface addressing and EIGRP AS 10 with advertised networks, a passive LAN interface, login banner and line passwords."},
+{src:"images/eigrp-06.png",cap:"R2 — interfaces and EIGRP AS 10 configuration."},
+{src:"images/eigrp-07.png",cap:"R3 — interfaces and EIGRP AS 10 configuration."},
+{src:"images/eigrp-08.png",cap:"PC-A — static IP on the 192.168.1.0/24 LAN, gateway 192.168.1.1."},
+{src:"images/eigrp-09.png",cap:"PC-B — static IP on the 192.168.2.0/24 LAN, gateway 192.168.2.1."},
+{src:"images/eigrp-10.png",cap:"PC-C — static IP on the 192.168.3.0/24 LAN, gateway 192.168.3.1."}
+],
+    dhcp: [
+{src:"images/dhcp-01.jpg",cap:"Lab topology — two LANs behind R1 receive addresses from a central DHCP server (R2), with RIPv2 routing and an ISP for internet access."},
+{src:"images/dhcp-02.png",cap:"DHCP leases verified — show ip dhcp binding on R2 lists the addresses handed out to the two PCs (192.168.0.10 and 192.168.1.10)."},
+{src:"images/dhcp-03.png",cap:"PC-A — set to DHCP and reporting 'DHCP request successful', having pulled 192.168.1.10 with the correct gateway and DNS."},
+{src:"images/dhcp-04.png",cap:"PC-B — set to DHCP and assigned 192.168.0.10 from the second pool, confirming both LANs are served."},
+{src:"images/dhcp-05.png",cap:"R2 (DHCP server) — two address pools (R1G0 and R1G1) with excluded addresses, default gateways, DNS server and domain name for each LAN."},
+{src:"images/dhcp-06.png",cap:"R2 — WAN interfaces and RIPv2 with default-information originate to advertise the route toward the internet."},
+{src:"images/dhcp-07.png",cap:"R1 — LAN interfaces configured with ip helper-address to relay DHCP requests across the WAN to R2."},
+{src:"images/dhcp-08.png",cap:"R1 — serial interface, RIPv2 and a default route pointing toward R2."},
+{src:"images/dhcp-09.png",cap:"ISP — upstream router with a summarized static route back to the 192.168.0.0/22 internal networks."}
+],
+    ospf: [
+{src:"images/ospf-01.jpg",cap:"Lab topology — OSPFv2 split into a backbone (Area 0) with Area 1 and Area 3 at the edges; R1 and R2 sit on the area boundaries."},
+{src:"images/ospf-02.png",cap:"R1 (ABR, Area 1 / Area 0) — neighbor FULL, inter-area O IA routes in the table, interface area assignments, and the OSPF process showing networks placed in areas 1 and 0."},
+{src:"images/ospf-03.png",cap:"R2 (ABR, Area 0 / Area 3) — FULL adjacencies with both R1 and R3; the table shows intra-area (O) and inter-area (O IA) routes, with interfaces split across areas 0 and 3."},
+{src:"images/ospf-04.png",cap:"R3 (internal to Area 3) — FULL with R2 and learning the other areas' networks as O IA routes through the backbone."}
+],
+    acl: [
+{src:"images/acl-01.jpg",cap:"Lab topology — a corporate HQ with a management VLAN and a DMZ, linked over WAN to branch offices in San Francisco and Los Angeles."},
+{src:"images/acl-02.png",cap:"HQ router — ACL 30 permits only the two Office Managers and the admin network into the DMZ; ACL 50 is applied to the VTY lines so only the admin network can remote in."},
+{src:"images/acl-03.png",cap:"Policy 1 (allowed) — the SF Office Manager (192.168.10.150) reaches the DMZ file server, exactly as ACL 30 permits."},
+{src:"images/acl-04.png",cap:"Policy 1 (blocked) — a regular SF PC (192.168.10.10) is denied to the DMZ by ACL 30's implicit deny (SF-2 is blocked the same way)."},
+{src:"images/acl-05.png",cap:"Policy 2 (allowed) — an admin PC (10.10.10.25) successfully opens a Telnet session to a router; ACL 50 permits the admin network."},
+{src:"images/acl-06.png",cap:"Policy 2 (blocked) — a non-admin host (LA-3) is refused Telnet access to the router by ACL 50."},
+{src:"images/acl-09.png",cap:"ACL 50 isn't only on HQ — the same Telnet restriction is deployed on LA (and SF); the hit counter here confirms admin logins are matching the rule."},
+{src:"images/acl-07.png",cap:"SF router — extended ACL 101 denies a range of SF hosts (192.168.10.0–.15) from reaching the LA network and permits everything else; the permit counter shows traffic matching."},
+{src:"images/acl-08.png",cap:"Policy 3 (blocked) — an in-range SF PC (192.168.10.10) cannot reach an LA host (192.168.20.10), enforced by extended ACL 101."},
+{src:"images/acl-10.png",cap:"Policy 3 (allowed) — the out-of-range SF Office Manager (192.168.10.150) successfully reaches the LA network (pinging the LA gateway 192.168.20.1), exactly as extended ACL 101 permits."}
+],
+    ebgp: [
+{src:"images/ebgp-01.jpg",cap:"Lab topology — three autonomous systems: an ISP (AS 1) peering via eBGP with two customer sites, Site1 (AS 100) and Site2 (AS 200), each advertising an internal network."},
+{src:"images/ebgp-02.png",cap:"Site1 (AS 100) — BGP process with eBGP neighbors toward the ISP (AS 1) and Site2 (AS 200), advertising its 10.0.1.0/24 loopback network."},
+{src:"images/ebgp-03.png",cap:"ISP (AS 1) — the transit router peering with both customer sites (AS 100 and AS 200) and advertising 10.0.0.0/24."},
+{src:"images/ebgp-04.png",cap:"Site2 (AS 200) — BGP process peering with the ISP and Site1, advertising its 10.0.2.0/24 loopback network."},
+{src:"images/ebgp-05.png",cap:"Site1 (AS 100) verified — show ip bgp summary shows both eBGP sessions established (a prefix count under State/PfxRcd, rather than a state name, means the peering is up), receiving 4 prefixes each from the ISP (AS 1) and Site2 (AS 200); show ip bgp and show ip route bgp confirm the ISP's 10.0.0.0/24 and Site2's 10.0.2.0/24 installed as eBGP (B) routes."},
+{src:"images/ebgp-06.png",cap:"ISP (AS 1) verified — eBGP sessions to both customers up with 4 prefixes received from Site1 (AS 100) and Site2 (AS 200); the BGP table and routing table show 10.0.1.0/24 learned via Site1 and 10.0.2.0/24 via Site2 as B routes."},
+{src:"images/ebgp-07.png",cap:"Site2 (AS 200) verified — both eBGP neighbors (the ISP and Site1) established with 4 prefixes each; show ip bgp and show ip route bgp confirm 10.0.0.0/24 and Site1's 10.0.1.0/24 as eBGP (B) routes — routes exchanged across all three autonomous systems."},
+{src:"images/ebgp-08.png",cap:"End-to-end reachability — Site1 (AS 100) pings 10.0.2.1, Site2's loopback in AS 200, at an 80% success rate; only the first packet drops while the next hop is resolved (the leading '.' before the four '!'), which is expected on a first ping."},
+{src:"images/ebgp-09.png",cap:"End-to-end reachability — Site2 (AS 200) pings into Site1's advertised 10.0.1.0/24 network in AS 100, again 80% with only the first packet dropping during resolution — confirming the data plane works in both directions across the AS boundary."}
+],
+    nat: [
+{src:"images/nat-01.jpg",cap:"Lab topology — a private internal network (192.168.1.0/24, RFC 1918) reaches an external 'public' user through a border router (IOSFW) running NAT/PAT, with an interior router behind it; inside hosts share a single public address on the way out."},
+{src:"images/nat-02.png",cap:"IOSFW (the NAT border router) — GigabitEthernet0/0/0 outside (201.10.10.2, ip nat outside) and GigabitEthernet0/0/1 inside (194.18.10.1, ip nat inside); the PAT pool 'mypatpool' holds a single public address (201.10.10.190), ip nat inside source list 1 pool mypatpool overload enables many-to-one PAT, a static route reaches the inside LAN, and ACL 1 matches the inside network 192.168.1.0/24."},
+{src:"images/nat-03.png",cap:"InteriorRouter — the router behind the NAT boundary: GigabitEthernet0/0/0 on the private LAN (192.168.1.1) and GigabitEthernet0/0/1 facing IOSFW (194.18.10.2), with a default route (0.0.0.0/0 via 194.18.10.1) sending all outbound traffic to the NAT router."},
+{src:"images/nat-04.png",cap:"Inside-to-outside — NetAdmin (192.168.1.4, inside) pings the external PublicUser at 201.10.10.1 with 4/4 replies and 0% loss, generating the traffic that PAT will translate."},
+{src:"images/nat-05.png",cap:"The proof — show ip nat translations on IOSFW lists the active PAT entries: the inside-local host 192.168.1.4 is translated to the inside-global address 201.10.10.190 with a unique port per flow, confirming many-to-one overload is doing the work."},
+{src:"images/nat-06.png",cap:"Return path — PublicUser pings the inside host (192.168.1.4) and gets 0% loss; the replies arrive sourced from 201.10.10.190, the inside-global PAT address, because IOSFW translates the inside host's address on the way back out."}
+],
+    fw: [
+{src:"images/fw-01.jpg",cap:"Lab topology — an enterprise edge built on two Cisco ASA firewalls: an internal ASA (inside / guest / outside zones) and a dedicated DMZ ASA publishing a web server, with a perimeter router facing the ISP and a distribution switch segmenting corporate (VLAN 100) and guest (VLAN 200) traffic."},
+{src:"images/fw-02.png",cap:"Internal ASA (asa5506-internal) — the three security zones: GigabitEthernet1/1 inside (172.21.1.1, security-level 100), Gig1/2 guest (172.21.2.1, level 50), and Gig1/3 outside (199.199.199.18, level 0). Higher level means more trusted; the ASA permits high-to-low by default and denies low-to-high."},
+{src:"images/fw-03.png",cap:"Internal ASA — dynamic PAT for the inside and guest networks out the outside interface, a default route to the perimeter router, the PUBLIC_TRAFFIC ACL applied inbound on the outside interface, and global inspection of DNS, FTP and TFTP."},
+{src:"images/fw-04.png",cap:"DMZ ASA (DMZASA) — a dedicated firewall for the DMZ: GigabitEthernet1/1 faces the web server (10.10.10.1, the protected segment) and Gig1/2 faces the perimeter router (199.199.199.10, outside), with the server's static NAT to 199.199.199.11 noted right on the interface."},
+{src:"images/fw-05.png",cap:"DMZ ASA — the published service: object network webserver maps the inside host 10.10.10.11 to the public address 199.199.199.11 via static NAT, and the OUTSIDEIN ACL (applied inbound on outside) permits only ICMP and the web server's TCP service from the internet."},
+{src:"images/fw-06.png",cap:"Perimeter router — the outer filtering layer: three interfaces (ISP, internal ASA, DMZ ASA), a default route to the ISP, and ACL 110 (applied outbound toward the DMZ) permitting only specific services to the DMZ hosts (DNS, web, FTP, ICMP) and denying the rest — a second line of defense in front of the DMZ ASA."},
+{src:"images/fw-07.png",cap:"Distribution switch (NOC-Dist-Sw) — Layer 2 segmentation: corporate ports in VLAN 100 and the guest Wi-Fi port in VLAN 200, trunked uplinks carrying both, and the guest DHCP pool (VL200-GUEST-WIFI) serving 172.21.2.0/24 with the ASA as the gateway."},
+{src:"images/fw-08.png",cap:"Inside DHCP — Server1's ServerPool scope for the corporate VLAN (172.21.1.0/24): gateway 172.21.1.1 (the ASA inside interface) and DNS 172.21.1.5 (the internal server), the addressing handed to inside clients. Server2 (BDC) mirrors this pool for redundancy."},
+{src:"images/fw-09.png",cap:"Internal DNS — the zeroday.com zone on Server1 (PDC): A records for the internal domain (zeroday.com to 172.21.1.5), the DMZ web server's public name (dmz.zeroday.com to 199.199.199.11), and the ISP's public names. Server2 holds a matching copy."},
+{src:"images/fw-10.png",cap:"Internal ASA verification — show access-list confirms the PUBLIC_TRAFFIC rules are live and matching traffic (ICMP hit count climbing), proving the inbound policy on the outside interface is actually being enforced rather than just configured."},
+{src:"images/fw-11.png",cap:"DMZ ASA verification — show nat lists the dynamic and static (webserver to 199.199.199.11) policies, and show access-list shows the OUTSIDEIN rules with hit counts, confirming inbound traffic to the DMZ is being filtered as configured."},
+{src:"images/fw-12.png",cap:"DMZ ASA verification — show xlate shows the live static translation: DMZ 10.10.10.11 to outside 199.199.199.11, confirming the web server is reachable from the internet through the firewall's NAT."},
+{src:"images/fw-13.png",cap:"Test 1 — an inside PC reaches the ISP server (199.199.199.1) with 0% loss: inside-to-outside through the internal ASA and PAT works."},
+{src:"images/fw-14.png",cap:"Test 3 — the ISP (outside) server reaches the DMZ web server at its public address (199.199.199.11) with 0% loss, exercising the perimeter routing, the DMZ static NAT, and the OUTSIDEIN permit all at once."},
+{src:"images/fw-15.png",cap:"Test 4 — a corporate Wi-Fi client reaches the DMZ web server (199.199.199.11), confirming internal users can reach the published service through the firewalls."},
+{src:"images/fw-16.png",cap:"The deny test — a guest Wi-Fi client trying to reach an internal server (172.21.1.5) times out at 100% loss. Guest (security 50) to inside (100) is blocked by default, proving the segmentation policy holds — arguably the most important result in the lab, since it shows the firewall denying traffic, not just permitting it."},
+{src:"images/fw-17.png",cap:"Guest DNS verified — a guest Wi-Fi client resolves a public name (cloud.superisp.com to 199.199.199.1) through its assigned public resolver, but correctly cannot resolve the internal zeroday.com zone: working internet name resolution with no visibility into internal records, exactly what an isolated guest should see."},
+{src:"images/fw-18.png",cap:"The DMZ web server itself — HTTP and HTTPS services running: the real service sitting behind the static NAT that the outside world reaches at 199.199.199.11."}
+],
+    ad: [
+{src:"images/ad-00.png",cap:"Active Directory on Windows Server 2022 — standing up and securing a domain end to end: DNS, users and groups, file and print services, Group Policy hardening, and backup."},
+{src:"images/ad-01.png",cap:"The domain controller — SRV22JA running Windows Server 2022 Standard, joined to the new TXRigJA.local domain, with Remote Desktop and Defender Firewall on and a static address on Ethernet0 (172.17.3.10)."},
+{src:"images/ad-02.png",cap:"Network foundation — ipconfig /all showing the server's static configuration (172.17.3.10/24, DHCP disabled) with its DNS pointed at itself, the prerequisite for a domain controller that also hosts AD-integrated DNS."},
+{src:"images/ad-03.png",cap:"Promoting the server — the Install-ADDSForest PowerShell that builds a brand-new forest and domain (TXRigJA.local, NetBIOS TXRIGJA) at the WinThreshold functional level and installs DNS along the way."},
+{src:"images/ad-04.png",cap:"AD-integrated DNS — the forward lookup zone for TXRigJA.local, automatically populated with the service-location records Active Directory depends on (_msdcs, _tcp, _udp, _sites) plus the domain controller's own host (A) record."},
+{src:"images/ad-05.png",cap:"Reverse DNS — the 3.17.172.in-addr.arpa reverse lookup zone with a PTR record mapping 172.17.3.10 back to srv22ja.TXRigJA.local, so name resolution works in both directions."},
+{src:"images/ad-06.png",cap:"A domain user — the account object for Johnathan Avalos, created and managed in Active Directory Users and Computers."},
+{src:"images/ad-07.png",cap:"Group membership — the same user's Member Of tab, showing membership in Domain Admins and Domain Users with Domain Users as the primary group."},
+{src:"images/ad-08.png",cap:"A department group — 'Production - Phx' populated with five users, all living in the Phoenix organizational unit (TXRigJA.local/Phoenix)."},
+{src:"images/ad-09.png",cap:"Group scopes — dsquery lists the groups under the Phoenix OU, named by scope: -G (global), -U (universal) and -DL (domain local), the classic AGDLP nesting convention."},
+{src:"images/ad-10.png",cap:"Delegation of control — the Phoenix OU's advanced security, where a specific user (Juan Garza) is granted Reset Password over descendant user objects without being made an administrator, alongside Account Operators and Domain Admins rights."},
+{src:"images/ad-11.png",cap:"A user template account — _Southern Template, pre-filled with shared attributes (Office: Southern Regional Office) so new regional hires are created by copying the template instead of re-entering common fields."},
+{src:"images/ad-12.png",cap:"Scripted provisioning — running adduser1.ps1 from C:\\labs in PowerShell to create user accounts in bulk, the automation alternative to clicking each one through the GUI."},
+{src:"images/ad-13.png",cap:"The Sales group populated with four users (Allen Resendez, Felix Garcia Sr, Robert Jacobs, Roberto Valdez) — department groups like this scope resource access by job function."},
+{src:"images/ad-14.png",cap:"Region-specific groups — IT - RGV (Rio Grande Valley) holding Cesar Ibarra, Jan Nesmith and Tony Santos, part of a per-site group design."},
+{src:"images/ad-15.png",cap:"Its Dallas counterpart, IT - DAL (Al Montemayor, Norma Colunga) — the RGV/DAL suffix pattern lets one department be permissioned separately per site."},
+{src:"images/ad-16.png",cap:"Publishing a file share from PowerShell — New-SmbShare exposes q:\\data as the data share with Everyone full access, and net share then lists every published share (data, HomeFolders, Production, QData, TestShare1, plus the default admin, SYSVOL and NETLOGON shares)."},
+{src:"images/ad-17.png",cap:"net share again, now including SharePrinter1 — a spooled Sales Color Printer published next to the file shares, so print services are advertised to clients the same way."},
+{src:"images/ad-18.png",cap:"NTFS permissions on a share — icacls on q:\\testshare1 lists the access control entries, including the TXRIGJA\\TestSharing-DL domain local group granted full control with object and container inheritance ((OI)(CI)(F)), the AGDLP model applied to a real folder."},
+{src:"images/ad-19.png",cap:"Per-user home folders — a listing of q:\\homefolders on the RAID-5 volume showing individual Jdoe and Jsmithh directories, the backing store for users' personal drives."},
+{src:"images/ad-20.png",cap:"The same storage seen from a Windows 10 client — This PC shows the mapped QData (M:) network location beside the local and RAID-5 drives."},
+{src:"images/ad-21.png",cap:"Accessing a share over the network from a client — browsing \\\\SRV22JA\\Production from Windows 10 and opening the file inside, proving the share and its permissions work end to end."},
+{src:"images/ad-22.png",cap:"A user's home drive in use — on the client, H: is mapped to \\\\SRV22JA\\homefolders\\Jdoe and net use confirms the persistent connection, the standard login-drive setup for domain users."},
+{src:"images/ad-23.png",cap:"Domain-wide password policy in the Default Domain Policy GPO — an 8-character minimum, complexity required, a 60-day maximum age and a 12-password history, the baseline account hardening every domain user inherits."},
+{src:"images/ad-24.png",cap:"Account Lockout Policy in the same GPO — accounts lock for 60 minutes after 5 invalid logon attempts, with the counter resetting after 60 minutes, a brute-force defense applied across the domain."},
+{src:"images/ad-25.png",cap:"Kerberos Policy — user logon restrictions enforced, with service-ticket (600 min), user-ticket (10 hr) and renewal (7 day) lifetimes plus a 5-minute clock-skew tolerance, the rules governing domain authentication tickets."},
+{src:"images/ad-26.png",cap:"Event Log settings under Local Policies — application, security and system logs each retained for 14 days by the 'by days' method, so audit history isn't silently overwritten."},
+{src:"images/ad-27.png",cap:"The lockout policy proven in practice — after repeated bad passwords, Edna Pena's account is refused at the Windows sign-in screen ('the referenced account is currently locked out'), confirming the 5-attempt threshold actually fires."},
+{src:"images/ad-28.png",cap:"A completed Backup Once job — the wizard reports Local Disk (C:) backed up successfully (718.95 MB) to the Q: RAID-5 volume."},
+{src:"images/ad-29.png",cap:"A system-state backup from the command line — wbadmin reports the operation, including the AD database and SYSVOL captured by the System Writer, completed and logged, the recovery safety net for the domain controller itself."}
+],
+  linux: [
+{src:"images/linux-01.jpg",cap:"The lab environment — a Linux desktop, the workstation used for the file-management and scripting tasks that follow."},
+{src:"images/linux-02.png",cap:"Setting up the workspace — whoami and pwd confirm the user and location, then mkdir linux_lab and cd create and enter the project directory the rest of the lab is built in."},
+{src:"images/linux-03.png",cap:"Building a nested directory tree — a series of mkdir commands lays out a Company structure (Finance, HR, IT, Projects) with sub-folders, and ls -R walks the result to confirm it."},
+{src:"images/linux-04.png",cap:"The populated structure at a glance — tree shows the full Company hierarchy: 14 directories and 9 files, each department folder holding its own text files, logs and a script."},
+{src:"images/linux-05.png",cap:"Reading file contents — cat prints a project note and an employee record, confirming the directories hold real content rather than just empty folders."},
+{src:"images/linux-06.png",cap:"Paths and variables — cat reads the same log two ways, once via an absolute path built from the $USER environment variable and once via a relative path, both returning the same line."},
+{src:"images/linux-07.png",cap:"Copying and moving files — cp duplicates a project note into IT, then mv renames and relocates files, with tree confirming the reorganised layout (Projects/Archived is now empty)."},
+{src:"images/linux-08.png",cap:"Changing permissions — ls -l shows backup.sh as non-executable (rw-rw-r--), chmod +x adds the execute bit, and a second ls -l confirms it is now executable (rwxrwxr-x)."},
+{src:"images/linux-09.png",cap:"Running a Bash script — backup.sh executes from the shell and steps through its echoed progress messages, finishing with 'Backup completed successfully.'"},
+{src:"images/linux-10.png",cap:"Searching for files with find — case-insensitive name searches locate everything matching backup, then all .txt files, then one specific network_plan.txt, across the whole tree."},
+{src:"images/linux-11.png",cap:"Searching inside files with grep -R — a recursive search pulls every line containing Backup (from the script) and Network (from the project and employee notes), with the matches highlighted."},
+{src:"images/linux-12.png",cap:"Hidden files — touch creates a dotfile (.company_secret) that a plain ls skips, while ls -la reveals it alongside the . and .. entries with full permission details."},
+{src:"images/linux-13.png",cap:"Locking down a sensitive file — echo writes a confidential HR note via redirection, then chmod 600 strips all group and other access so ls -l shows it readable and writable by the owner alone (rw-------)."},
+{src:"images/linux-14.png",cap:"Bringing the skills together on a second structure — tree maps a PracticeLab hierarchy, find locates its log, grep -R surfaces an 'Admin account reviewed' note, and ls -l confirms that note is owner-only (rw-------)."}
+  ],
+  ws: [
+{src:"images/ws-00.png",cap:"Network forensics with Wireshark — investigating a fake software-download infection from raw packet capture through to a full set of indicators of compromise."},
+{src:"images/ws-01.png",cap:"The malware PCAP opened in Wireshark — the full packet list confirms the capture loaded, with traffic to analyse across the 10.1.17.0/24 LAN."},
+{src:"images/ws-02.png",cap:"Statistics > Conversations > IPv4 — sorting internal-to-external conversations surfaces 10.1.17.215 as the busiest suspect host talking to outside addresses."},
+{src:"images/ws-03.png",cap:"A DNS filter exposes the lure — the host resolves the fake domain google-authenticator.burleson-appliance.net, a spoofed Google Authenticator download site."},
+{src:"images/ws-04.png",cap:"Filtering ip.addr == 10.1.17.215 isolates the infected host's traffic, confirming it drives the suspicious DNS, HTTP and external activity."},
+{src:"images/ws-05.png",cap:"Layer 2 attribution — expanding Ethernet II on a frame from the host reveals its source MAC address, 00:24:e8:7f:09:5d."},
+{src:"images/ws-06.png",cap:"Host identity — DHCP/NBNS traffic ties the infected IP to the Windows hostname DESKTOP-L8C5GSJ."},
+{src:"images/ws-07.png",cap:"User attribution — the Kerberos CNameString in the authentication traffic identifies the logged-on account, shutchenson."},
+{src:"images/ws-08.png",cap:"Filtering http.request lays out the full malicious HTTP chain — repeated GETs to /1517096937 on 5.252.153.241, PowerShell payloads (get-file/*.ps1), a TeamViewer pull for remote access, and a beacon reporting 'startup shortcut created; status = success.'"},
+{src:"images/ws-09.png",cap:"Following the HTTP stream shows the fake download itself — a GET to http://5.252.153.241/1517096937, the payload delivery after the lure."},
+{src:"images/ws-10.png",cap:"Encrypted follow-on traffic — a TLS Client Hello with its SNI links the host to an external server (45.125.66.32), evidence that survives without decryption."},
+{src:"images/ws-11.png",cap:"Back in IPv4 Conversations, filtering the host against external ranges reveals the command-and-control endpoints it beacons to: 45.125.66.32 and 45.125.66.252."},
+{src:"images/ws-12.png",cap:"The C2's TLS certificate gives it away — filtering 45.125.66.32 for certificate handshakes and expanding it reveals a self-signed certificate whose subject and issuer are both just the IP itself (commonName=45.125.66.32), the throwaway cert typical of command-and-control servers rather than a legitimate service."},
+{src:"images/ws-13.png",cap:"The investigation distilled into an Indicators of Compromise table — infected IP, MAC, hostname, user, the fake domain and C2 IPs, each tied to its evidence source."}
+  ]
+  };
+  (function () {
+    document.querySelectorAll(".gallery-thumb").forEach(function (img) {
+      var k = img.getAttribute("data-g");
+      if (GALLERIES[k] && GALLERIES[k].length) img.src = GALLERIES[k][0].src;
+    });
+    var lb = document.getElementById("lightbox"),
+        img = document.getElementById("lbImg"),
+        cap = document.getElementById("lbCap"),
+        count = document.getElementById("lbCount");
+    var cur = [], i = 0;
+    function show(n) { i = (n + cur.length) % cur.length; img.src = cur[i].src; cap.textContent = cur[i].cap; count.textContent = (i+1) + " / " + cur.length; }
+    function openG(key) { cur = GALLERIES[key]; if (!cur || !cur.length) return; show(0); lb.classList.add("open"); document.body.style.overflow = "hidden"; }
+    function close() { lb.classList.remove("open"); document.body.style.overflow = ""; }
+    document.querySelectorAll(".gallery-trigger").forEach(function (btn) {
+      btn.addEventListener("click", function () { openG(btn.getAttribute("data-gallery")); });
+    });
+    document.getElementById("lbClose").addEventListener("click", close);
+    document.getElementById("lbPrev").addEventListener("click", function () { show(i-1); });
+    document.getElementById("lbNext").addEventListener("click", function () { show(i+1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(i-1);
+      if (e.key === "ArrowRight") show(i+1);
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var cmd = document.getElementById("cmd");
+    var output = document.getElementById("output");
+    var cursor = document.getElementById("cursor");
+    if (!cmd) return;
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var text = "whoami --verbose";
+    if (reduced) { cmd.textContent = text; output.style.display = "block"; return; }
+    var i = 0;
+    function type() {
+      if (i <= text.length) { cmd.textContent = text.slice(0, i); i++; setTimeout(type, 70); }
+      else { setTimeout(function () { output.style.display = "block"; cursor.style.display = "none"; }, 350); }
+    }
+    setTimeout(type, 600);
+  })();
+
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("in"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
